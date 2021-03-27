@@ -1,23 +1,40 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import Calculator from './src/pages/Calculator';
-import Header from './src/components/Header';
-import LinearGradient from 'react-native-linear-gradient';
+
+import { 
+  PageCalculator, 
+  PageConversor, 
+  PageTimeCalculator, 
+  PagePercentage, 
+  PageTemperature 
+} from './src/pages';
+
+import DrawerContent from './src/components/Drawer';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+import styles from './styles';
 
 const App = () => {
 
-  return (
-    <LinearGradient colors={['#6a3093', '#a044ff']} style={styles.gradient}>
-      <Header/>
-      <Calculator/>
-    </LinearGradient>
-  );
-};
+  const Drawer = createDrawerNavigator();
 
-const styles = StyleSheet.create({
-  gradient: {
-    flex: 1,
-  },
-})
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator
+        initialRouteName="Calculator"
+        drawerStyle={styles.drawerStyle}
+        drawerContent = { props => <DrawerContent {...props} />}
+      >
+        <Drawer.Screen name="Calculator" component={PageCalculator}/>
+        <Drawer.Screen name="Conversor" component={PageConversor}/>
+        <Drawer.Screen name="TimeCalculator" component={PageTimeCalculator}/>
+        <Drawer.Screen name="Percentage" component={PagePercentage}/>
+        <Drawer.Screen name="Temperature" component={PageTemperature}/>
+      </Drawer.Navigator>
+    </NavigationContainer>
+  )
+
+};
 
 export default App;

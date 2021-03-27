@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, Modal} from 'react-native';
+import {View, Text, TouchableOpacity, Modal, DrawerLayoutAndroid} from 'react-native';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+import Calculator from '../../pages/Calculator';
+import Conversor from '../../pages/Conversor';
 
 import IconI from 'react-native-vector-icons/Ionicons';
 import IconFA from 'react-native-vector-icons/FontAwesome5';
@@ -8,7 +14,24 @@ import styles from './styles';
 
 const Menu = () => {
 
-  return (
+    const Drawer = createDrawerNavigator();
+
+    return (
+        <NavigationContainer>
+            <Drawer.Navigator 
+              initialRouteName="Calculator"
+              drawerStyle = {{
+                  backgroundColor: '#313131',
+                  paddingVertical: 20,
+              }} 
+            >
+                <Drawer.Screen name="Calculator" component={Calculator} />
+                <Drawer.Screen name="Conversor" component={Conversor} />
+            </Drawer.Navigator>
+        </NavigationContainer>
+    )
+
+  /*return (
     <Modal transparent>
         <View style={styles.modal}>
             <View style={styles.containerModal}>
@@ -43,7 +66,7 @@ const Menu = () => {
             </View>
         </View>
     </Modal>
-  )
+  )*/
 };
 
 export default Menu;

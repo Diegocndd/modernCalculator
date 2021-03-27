@@ -3,6 +3,8 @@ import {View, Text, TouchableOpacity} from 'react-native';
 
 import Menu from '../Menu';
 
+import { DrawerActions, useNavigation } from '@react-navigation/native';
+
 import IconMCI from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconI from 'react-native-vector-icons/Ionicons';
 
@@ -11,8 +13,9 @@ import styles from './styles';
 
 const Header = () => {
 
-    const [viewModal, setViewModal] = useState(false);
+    const navigation = useNavigation();
 
+    const [viewModal, setViewModal] = useState(false);
     return (
     <View style={styles.headerContainer}>
 
@@ -20,7 +23,7 @@ const Header = () => {
             <Menu/>
         : null}
 
-        <TouchableOpacity onPress={() => setViewModal(true)}>
+        <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
             <IconMCI name="menu" size={30} color="#fff" />
         </TouchableOpacity>
 
