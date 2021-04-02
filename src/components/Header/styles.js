@@ -6,12 +6,12 @@ const widthScreen = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     headerContainer: {
-        height: 0.3 * heightScreen / 3,
+        height: 0.1 * heightScreen,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 20,
-    }
+    },
 });
 
 export default styles;
