@@ -5,7 +5,6 @@ import {
   PageConversor, 
   PageTimeCalculator, 
   PagePercentage, 
-  PageTemperature 
 } from './src/pages';
 
 import DrawerContent from './src/components/Drawer';
@@ -30,7 +29,6 @@ const App = () => {
         <Drawer.Screen name="Conversor" component={PageConversor}/>
         <Drawer.Screen name="TimeCalculator" component={PageTimeCalculator}/>
         <Drawer.Screen name="Percentage" component={PagePercentage}/>
-        <Drawer.Screen name="Temperature" component={PageTemperature}/>
       </Drawer.Navigator>
     </NavigationContainer>
   )
