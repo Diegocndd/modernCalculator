@@ -12,6 +12,15 @@ const comprimento = ['mm', 'cm', 'dm', 'm', 'dam', 'hm', 'km'];
 const tempo = ['s', 'min', 'h'];
 const velocidade = ['m/s', 'km/h'];
 const temperatura = ['°C','°F','K'];
+const data = [
+    {id: 0, label: 'Massa', value: 0},
+    {id: 1, label: 'Comprimento', value: 1},
+    {id: 2, label: 'Área', value: 2},
+    {id: 3, label: 'Volume', value: 3},
+    {id: 4, label: 'Velocidade', value: 4},
+    {id: 5, label: 'Tempo', value: 5},
+    {id: 6, label: 'Temperatura', value: 6},
+];
 
 const Conversor = () => {
 
@@ -20,16 +29,6 @@ const Conversor = () => {
     const [pressed, setPressed] = useState(null);
     const [finalPressed, setFinalPressed] = useState(null);
     const [hideInput, setHideInput] = useState(false);
-
-    const data = [
-        {id: 0, label: 'Massa', value: 0},
-        {id: 1, label: 'Comprimento', value: 1},
-        {id: 2, label: 'Área', value: 2},
-        {id: 3, label: 'Volume', value: 3},
-        {id: 4, label: 'Velocidade', value: 4},
-        {id: 5, label: 'Tempo', value: 5},
-        {id: 6, label: 'Temperatura', value: 6},
-    ];
 
     const renderMeasures = (type) => {
 

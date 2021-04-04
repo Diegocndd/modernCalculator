@@ -166,7 +166,7 @@ const Calculator = () => {
           <TouchableOpacity style={styles.column} onPress={() => {actualOperation('x')}}>
             <View style={styles.column}>
               <Text style={styles.keyboardText}>
-                X
+                {`\u00D7`}
               </Text>
             </View>
           </TouchableOpacity>
@@ -184,7 +184,7 @@ const Calculator = () => {
           <TouchableOpacity style={styles.column} onPress={() => {actualOperation('/')}}>
             <View style={styles.column}>
               <Text style={styles.keyboardText}>
-                /
+                {`\u00f7`}
               </Text>
             </View>
           </TouchableOpacity>
@@ -202,7 +202,7 @@ const Calculator = () => {
           <TouchableOpacity style={styles.column} onPress={() => {actualOperation('-')}}>
             <View style={styles.column}>
               <Text style={styles.keyboardText}>
-                -
+                {`\u2014`}
               </Text>
             </View>
           </TouchableOpacity>
@@ -257,7 +257,7 @@ const Calculator = () => {
           <TouchableOpacity style={styles.column} onPress={() => changeSign()}>
             <View style={styles.column}>
               <Text style={styles.keyboardText}>
-                +/-
+                {`\u00b1`}
               </Text>
             </View>
           </TouchableOpacity>
