@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, TextInput, ScrollView, StyleSheet} from 'react-native';
-
-import IconFA from 'react-native-vector-icons/FontAwesome';
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    TextInput,
+    ScrollView
+} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-
 import styles from './styles';
 import { parse } from '@babel/core';
 
@@ -212,7 +215,6 @@ const Conversor = () => {
                         style={styles.input}
                         editable={!hideInput}
                         onChangeText={(text) => {setInitialMeasure(text)}}
-                        value={10}
                         placeholder={!hideInput ? "30" : ""}
                         keyboardType="numeric"
                     />

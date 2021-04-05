@@ -66,7 +66,6 @@ const Percentage = () => {
                 <TextInput
                     style={styles.input}
                     onChangeText={(text) => {setFirstNumber(text)}}
-                    value={10}
                     placeholder={"0"}
                     keyboardType="numeric"
                 />
@@ -86,7 +85,6 @@ const Percentage = () => {
                 <TextInput
                     style={styles.input}
                     onChangeText={(text) => {setSecondNumber(text)}}
-                    value={10}
                     placeholder={"0"}
                     keyboardType="numeric"
                 />
@@ -97,7 +95,6 @@ const Percentage = () => {
                 <TextInput
                     style={styles.input}
                     onChangeText={(text) => {setPercentageValue(text)}}
-                    value={10}
                     placeholder={"0"}
                     keyboardType="numeric"
                 />
@@ -105,7 +102,6 @@ const Percentage = () => {
                 <TextInput
                     style={styles.input}
                     onChangeText={(text) => {setFixedValue(text)}}
-                    value={10}
                     placeholder={"0"}
                     keyboardType="numeric"
                 />
@@ -116,7 +112,6 @@ const Percentage = () => {
                 <TextInput
                     style={styles.input}
                     onChangeText={(text) => {setScdFixedValue(text)}}
-                    value={10}
                     placeholder={"0"}
                     keyboardType="numeric"
                 />
@@ -124,7 +119,6 @@ const Percentage = () => {
                 <TextInput
                     style={styles.input}
                     onChangeText={(text) => {setScdValue(text)}}
-                    value={10}
                     placeholder={"0"}
                     keyboardType="numeric"
                 />

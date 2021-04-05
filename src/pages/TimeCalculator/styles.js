@@ -72,6 +72,53 @@ const styles = StyleSheet.create({
         width: 60,
         height: 60,
         top: -13,
+    },
+    modalContainer: {
+        zIndex: 1,
+        position: 'absolute',
+        height: heightScreen,
+        width: widthScreen,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    },
+    modalContainer2: {
+        width: widthScreen/1.4,
+        height: heightScreen/3,
+        backgroundColor: '#fff',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        position: 'absolute',
+        top: heightScreen/3,
+        left: widthScreen/7,
+        borderRadius: 10,
+    },
+    textError: {
+        fontSize: 17,
+        textAlign: 'center',
+        marginTop: 10,
+    },
+    containerText: {
+        width: '70%'
+    },
+    info: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '80%'
+    },
+    okButton: {
+        backgroundColor: '#eb4034',
+        width: '100%',
+        height: '20%',
+        borderBottomRightRadius: 10,
+        borderBottomLeftRadius: 10,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    textButton: {
+        fontSize: 17,
+        color: '#fff'
     }
 });
 
