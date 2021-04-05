@@ -1,18 +1,19 @@
 import { parse } from '@babel/core';
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
-
+import {
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    KeyboardAvoidingView,
+} from 'react-native';
+import ModalError from './ModalError';
 import styles from './styles';
-
-const data = [
-    {id: 0, label: '+', value: 0},
-    {id: 1, label: '-', value: 1},
-];
 
 const TimeCalculator = () => {
 
     const [selectedOperation, setSelectedOperation] = useState(0);
+    const [errorSub, setErrorSub] = useState(false);
 
     const [firstHour, setFirstHour] = useState(0);
     const [firstMinute, setFirstMinute] = useState(0);
@@ -26,41 +27,109 @@ const TimeCalculator = () => {
     const [resultMinute, setResultMinute] = useState(0);
     const [resultSecond, setResultSecond] = useState(0);
 
-    const calculateTime = () => {
+    let firstTime = firstHour + ':' + firstMinute + ':' + firstSecond;
+    let secondTime = secondHour + ':' + secondMinute + ':' + secondSecond;
+
+    const sumTimes = (start, end) => {
+
+        let hours = 0;
+        let minutes = 0;
+        let seconds = 0;
         let quotient = 0;
-        let sum = 0;
 
-        if(firstSecond + secondSecond >= 60){
-            sum = firstSecond + secondSecond;
-            quotient = parseInt(sum / 60);
+        times = [];
+        times1 = start.split(':');
+        times2 = end.split(':');
 
-            setResultSecond(sum - (quotient * 60));
-            setResultMinute(resultMinute + quotient);
+        let sum = parseInt(times1[2],10) + parseInt(times2[2],10);
+        let sum2 = parseInt(times1[1],10) + parseInt(times2[1],10);
+
+        if(times1[2] + times2[2] >= 60){
+            quotient = parseInt(sum / 60,10);
+            minutes += 1;
+            seconds = sum - (quotient*60);
         } else {
-            setResultSecond(firstSecond + secondSecond);
+            seconds += sum;
         }
 
-        /*if(firstMinute + secondMinute >= 60){
-            sum = firstMinute + secondMinute;
-            quotient = parseInt(sum / 60);
-            setResultMinute(sum - (quotient * 60));
-            setResultHour(resultHour + quotient);
+        if(times1[1] + times1[1] >= 60){
+            quotient = parseInt(sum2 / 60, 10);
+            hours+=1;
+            minutes += sum2 - (quotient*60);
         } else {
-            setResultMinute( resultMinute + firstMinute + secondMinute);
-        }*/
+            minutes += sum2;
+        }
 
-        setResultHour(resultHour + firstHour + secondHour);
+        hours += parseInt(times1[0],10) + parseInt(times2[0],10);
+
+        setResultHour(hours);
+        setResultMinute(minutes);
+        setResultSecond(seconds);
+    }
+
+    const subTimes = (start, end) => {
+
+        let hours = 0;
+        let minutes = 0;
+        let seconds = 0;
+        let quotient = 0;
+
+        times = [];
+        times1 = start.split(':');
+        times2 = end.split(':');
+
+        let subSeconds = parseInt(times1[2],10) - parseInt(times2[2],10);
+        let subMinutes = parseInt(times1[1],10) - parseInt(times2[1],10);
+        let subHours = parseInt(times1[0],10) - parseInt(times2[0],10);
+
+        if(subSeconds < 0 || subMinutes < 0 || subHours < 0){
+            setErrorSub(true);
+            setResultHour(0);
+            setResultMinute(0);
+            setResultSecond(0);
+            return 0;
+        } else {
+            setErrorSub(false);
+        }
+
+        if(subSeconds >= 60){
+            quotient = parseInt(subSeconds / 60, 10);
+            minutes += quotient;
+            seconds += subSeconds - (quotient * 60);
+        } else {
+            seconds += subSeconds;
+        }
+
+        if(subMinutes >= 60){
+            quotient = parseInt(subMinutes / 60, 10);
+            hours += quotient;
+            minutes += subMinutes - (quotient * 60);
+        } else {
+            minutes += subMinutes;
+        }
+
+        hours += subHours;
+
+        setResultHour(hours);
+        setResultMinute(minutes);
+        setResultSecond(seconds);
+    }
+
+    const closeModal = () => {
+        setErrorSub(false);
     }
 
     return (
         <KeyboardAvoidingView style={styles.main} behavior="padding">
+            { errorSub ?
+                <ModalError close={closeModal}/>
+              : null
+            }
             <View style={styles.firstContainer}>
                 <View style={styles.timeInputs}>
                     <View style={styles.container}>
                         <TextInput
                             style={styles.input}
-                            value={10}
-                            defaultValue={0}
                             placeholder={"00"}
                             placeholderTextColor={'#8e8e8e'}
                             keyboardType="numeric"
@@ -71,7 +140,6 @@ const TimeCalculator = () => {
                     <View style={styles.container}>
                         <TextInput
                             style={styles.input}
-                            value={10}
                             placeholder={"00"}
                             placeholderTextColor={'#8e8e8e'}
                             keyboardType="numeric"
@@ -82,7 +150,6 @@ const TimeCalculator = () => {
                     <View style={styles.container}>
                         <TextInput
                             style={styles.input}
-                            value={10}
                             placeholder={"00"}
                             placeholderTextColor={'#8e8e8e'}
                             keyboardType="numeric"
@@ -91,7 +158,7 @@ const TimeCalculator = () => {
                         <Text style={styles.indicator}> s</Text>
                     </View>
                 </View>
-
+                
                 <View style={styles.containerOperations}>
                     <TouchableOpacity onPress={() => {setSelectedOperation(0)}}>
                         <Text style={[styles.operation, {borderColor: selectedOperation===0 ? '#fff' : 'transparent'}]}>
@@ -110,7 +177,6 @@ const TimeCalculator = () => {
                     <View style={styles.container}>
                         <TextInput
                             style={styles.input}
-                            value={10}
                             placeholder={"00"}
                             placeholderTextColor={'#8e8e8e'}
                             keyboardType="numeric"
@@ -121,7 +187,6 @@ const TimeCalculator = () => {
                     <View style={styles.container}>
                         <TextInput
                             style={styles.input}
-                            value={10}
                             placeholder={"00"}
                             placeholderTextColor={'#8e8e8e'}
                             keyboardType="numeric"
@@ -132,7 +197,6 @@ const TimeCalculator = () => {
                     <View style={styles.container}>
                         <TextInput
                             style={styles.input}
-                            value={10}
                             placeholder={"00"}
                             placeholderTextColor={'#8e8e8e'}
                             keyboardType="numeric"
@@ -144,7 +208,7 @@ const TimeCalculator = () => {
             </View>
 
             <View style={styles.secondContainer}>
-                <TouchableOpacity style={styles.buttonEqual} onPress={() => calculateTime()}>
+                <TouchableOpacity style={styles.buttonEqual} onPress={() => selectedOperation == 0 ? sumTimes(firstTime, secondTime) : subTimes(firstTime, secondTime)}>
                         <Text style={styles.operation}>{`\u003d`}</Text>
                 </TouchableOpacity>
 
@@ -152,7 +216,6 @@ const TimeCalculator = () => {
                     <Text style={styles.indicator}>{resultHour}h {resultMinute}min {resultSecond}s</Text>
                 </View>
             </View>
-
         </KeyboardAvoidingView>
     )
 };

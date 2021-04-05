@@ -54,16 +54,6 @@ const DrawerContent = ({navigation}) => {
             </TouchableOpacity>
 
             <View style={styles.line}></View>
-
-            <TouchableOpacity onPress={() => {navigation.navigate('Temperature')}}>
-                <View style={styles.optionContainer}>
-                    <IconFA name="temperature-high" size={24} color="#fff" style={{marginRight: 13}}/>
-                    <Text style={styles.textContainer}>
-                        TEMPERATURA
-                    </Text>
-                </View>
-            </TouchableOpacity>
-
         </View>
     )
 };
