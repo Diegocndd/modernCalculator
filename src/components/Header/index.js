@@ -27,7 +27,7 @@ const Header = () => {
             <IconMCI name="menu" size={30} color="#fff" />
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
             <IconI name="settings-sharp" size={29} color="#fff" />
         </TouchableOpacity>
     </View>
