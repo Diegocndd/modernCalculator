@@ -6,11 +6,12 @@ const widthScreen = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     optionContainer: {
-        height: heightScreen/15,
+        height: heightScreen/11,
         alignItems: 'center',
         justifyContent: 'flex-start',
         flexDirection: 'row',
         padding: 4,
+        //backgroundColor: 'red'
     },
     textContainer: {
         fontSize: 14,
@@ -19,14 +20,29 @@ const styles = StyleSheet.create({
     },
     drawerContainer: {
         flexDirection: 'column',
-        justifyContent: 'space-around',
-        height: heightScreen/2.5,
+        justifyContent: 'flex-start',
+        height: heightScreen/1,
     },
     line: {
         backgroundColor: '#424242',
         width: widthScreen/2.1,
         height: 1,
         marginLeft: 4,
+    },
+    circle: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: 'transparent',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column'
+    },
+    colors: {
+        width: '80%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginBottom: 15
     }
 });
 

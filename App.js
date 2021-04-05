@@ -4,7 +4,7 @@ import {
   PageCalculator, 
   PageConversor, 
   PageTimeCalculator, 
-  PagePercentage, 
+  PagePercentage,
 } from './src/pages';
 
 import DrawerContent from './src/components/Drawer';
