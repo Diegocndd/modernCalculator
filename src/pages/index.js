@@ -7,10 +7,13 @@ import Conversor from './Conversor';
 import Percentage from './Percentage';
 import TimeCalculator from './TimeCalculator';
 import Header from '../components/Header';
+import { useSelector } from "react-redux";
 
 export const PageCalculator = () => {
+    const themesColors = useSelector(state => state.themes);
+    const { firstColor, secondColor } = themesColors;
     return (
-        <LinearGradient colors={['#C06C84', '#a044ff']} style={styles.gradient}>
+        <LinearGradient colors={[firstColor, secondColor]} style={styles.gradient}>
             <Header/>
             <Calculator/>
         </LinearGradient>
@@ -18,8 +21,10 @@ export const PageCalculator = () => {
 }
 
 export const PageConversor = () => {
+    const themesColors = useSelector(state => state.themes);
+    const { firstColor, secondColor } = themesColors;
     return (
-        <LinearGradient colors={['#C06C84', '#a044ff']} style={styles.gradient}>
+        <LinearGradient colors={[firstColor, secondColor]} style={styles.gradient}>
             <Header/>
             <Conversor/>
         </LinearGradient>
@@ -27,8 +32,10 @@ export const PageConversor = () => {
 }
 
 export const PageTimeCalculator = () => {
+    const themesColors = useSelector(state => state.themes);
+    const { firstColor, secondColor } = themesColors;
     return (
-        <LinearGradient colors={['#C06C84', '#a044ff']} style={styles.gradient}>
+        <LinearGradient colors={[firstColor, secondColor]} style={styles.gradient}>
             <Header/>
             <TimeCalculator/>
         </LinearGradient>
@@ -36,8 +43,10 @@ export const PageTimeCalculator = () => {
 }
 
 export const PagePercentage = () => {
+    const themesColors = useSelector(state => state.themes);
+    const { firstColor, secondColor } = themesColors;
     return (
-        <LinearGradient colors={['#C06C84', '#a044ff']} style={styles.gradient}>
+        <LinearGradient colors={[firstColor, secondColor]} style={styles.gradient}>
             <Header/>
             <Percentage/>
         </LinearGradient>

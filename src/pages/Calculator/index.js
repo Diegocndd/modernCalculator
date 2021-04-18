@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
+import { useSelector } from "react-redux";
 
 import styles from './styles';
 
@@ -11,11 +12,23 @@ const Calculator = () => {
   const [isRational1, setIsRational1] = useState(false);
   const [isRational2, setIsRational2] = useState(false);
   const [isCompleted1, setIsCompleted1] = useState(false);
+  const themesColors = useSelector(state => state.themes);
+  const { secondColor } = themesColors;
 
-  const actualOperation = (op) => {
+  const actualOperation = (operation) => {
+    let op = operation;
+
+    if (operation === '/') {
+      op = `\u00f7`;
+    } else if (operation === 'x') {
+      op = `\u00D7`;
+    } else if (operation === '-'){
+      op = `\u2014`;
+    }
+
     if(isCompleted1){
       completeOperation();
-      setOperation(op);
+      setOperation(op)
       setIsCompleted1(true);
       setNumber2("0");
     } else {
@@ -30,16 +43,16 @@ const Calculator = () => {
     const sndNumber = parseFloat(number2);
 
     switch (operation) {
-      case 'x':
+      case '\u00D7':
         setNumber1(fstNumber*sndNumber);
         break;
-      case '-':
+      case '\u2014':
         setNumber1(fstNumber-sndNumber);
         break;
       case '+':
         setNumber1(fstNumber+sndNumber);
         break;
-      case '/':
+      case '\u00f7':
         setNumber1(fstNumber/sndNumber);
         break;
 
@@ -108,7 +121,7 @@ const Calculator = () => {
 
       }}>
         <View style={styles.column}>
-          <Text style={styles.keyboardText}>
+          <Text style={[styles.keyboardText, { color: secondColor }]}>
             {number}
           </Text>
         </View>
@@ -141,7 +154,7 @@ const Calculator = () => {
 
           <TouchableOpacity style={styles.column} onPress={() => cancelEntry()}>
             <View style={styles.column}>
-              <Text style={styles.keyboardText}>
+              <Text style={[styles.keyboardText, { color: secondColor }]}>
                 CE
               </Text>
             </View>
@@ -149,7 +162,7 @@ const Calculator = () => {
 
           <TouchableOpacity style={styles.column} onPress={() => clearAll()}>
             <View style={styles.column}>
-              <Text style={styles.keyboardText}>
+              <Text style={[styles.keyboardText, { color: secondColor }]}>
                 C
               </Text>
             </View>
@@ -157,7 +170,7 @@ const Calculator = () => {
 
           <TouchableOpacity style={styles.column} onPress={() => {}}>
             <View style={styles.column}>
-              <Text style={styles.keyboardText}>
+              <Text style={[styles.keyboardText, { color: secondColor }]}>
                 DEL
               </Text>
             </View>
@@ -165,7 +178,7 @@ const Calculator = () => {
 
           <TouchableOpacity style={styles.column} onPress={() => {actualOperation('x')}}>
             <View style={styles.column}>
-              <Text style={styles.keyboardText}>
+              <Text style={[styles.keyboardText, { color: secondColor }]}>
                 {`\u00D7`}
               </Text>
             </View>
@@ -183,7 +196,7 @@ const Calculator = () => {
 
           <TouchableOpacity style={styles.column} onPress={() => {actualOperation('/')}}>
             <View style={styles.column}>
-              <Text style={styles.keyboardText}>
+              <Text style={[styles.keyboardText, { color: secondColor }]}>
                 {`\u00f7`}
               </Text>
             </View>
@@ -201,7 +214,7 @@ const Calculator = () => {
 
           <TouchableOpacity style={styles.column} onPress={() => {actualOperation('-')}}>
             <View style={styles.column}>
-              <Text style={styles.keyboardText}>
+              <Text style={[styles.keyboardText, { color: secondColor }]}>
                 {`\u2014`}
               </Text>
             </View>
@@ -217,9 +230,9 @@ const Calculator = () => {
 
           {onTouchNumber(3)}
 
-          <TouchableOpacity style={styles.column} onPress={() => {}}>
+          <TouchableOpacity style={styles.column} onPress={() => {actualOperation('+')}}>
             <View style={styles.column}>
-              <Text style={styles.keyboardText} onPress={() => {actualOperation('+')}}>
+              <Text style={[styles.keyboardText, { color: secondColor }]}>
                 +
               </Text>
             </View>
@@ -231,7 +244,7 @@ const Calculator = () => {
 
           <TouchableOpacity style={styles.column} onPress={() => isCompleted1 ? setNumber2(number2 + '0') : setNumber1(number1 + '0')}>
             <View style={styles.column}>
-              <Text style={styles.keyboardText}>
+              <Text style={[styles.keyboardText, { color: secondColor }]}>
                 0
               </Text>
             </View>
@@ -248,7 +261,7 @@ const Calculator = () => {
           }}
           >
             <View style={styles.column}>
-              <Text style={styles.keyboardText}>
+              <Text style={[styles.keyboardText, { color: secondColor }]}>
                 .
               </Text>
             </View>
@@ -256,7 +269,7 @@ const Calculator = () => {
 
           <TouchableOpacity style={styles.column} onPress={() => changeSign()}>
             <View style={styles.column}>
-              <Text style={styles.keyboardText}>
+              <Text style={[styles.keyboardText, { color: secondColor }]}>
                 {`\u00b1`}
               </Text>
             </View>
@@ -264,7 +277,7 @@ const Calculator = () => {
 
           <TouchableOpacity style={styles.column} onPress={() => completeOperation()}>
             <View style={styles.column}>
-              <Text style={styles.keyboardText}>
+              <Text style={[styles.keyboardText, { color: secondColor }]}>
                 =
               </Text>
             </View>
