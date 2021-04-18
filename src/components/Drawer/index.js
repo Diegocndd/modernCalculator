@@ -1,55 +1,52 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, Dimensions} from 'react-native';
-
 import IconI from 'react-native-vector-icons/Ionicons';
 import IconFA from 'react-native-vector-icons/FontAwesome5';
 import LinearGradient from 'react-native-linear-gradient';
-import { colors } from '../../constants/themes';
-import { set_theme } from '../../store/ducks/themes';
-import { useDispatch } from "react-redux";
+import {colors} from '../../constants/themes';
+import {set_theme} from '../../store/ducks/themes';
+import {useDispatch} from 'react-redux';
 import styles from './styles';
 
 const heightScreen = Dimensions.get('window').height;
 
 const DrawerContent = ({navigation}) => {
-    const [selectedColor, setSelectedColor] = useState(0);
-    const dispatch = useDispatch();
+  const [selectedColor, setSelectedColor] = useState(0);
+  const dispatch = useDispatch();
+  const setColor = id => {
+    setSelectedColor(id);
 
-    const setColor = id => {
-        setSelectedColor(id);
-
-        switch (id) {
-            case 0:
-                dispatch(set_theme(colors.base1, colors.base2));
-                break;
-            case 1:
-                dispatch(set_theme(colors.purple1, colors.purple2));
-                break;
-            case 2:
-                dispatch(set_theme(colors.sun1, colors.sun2));
-                break;
-            case 3:
-                dispatch(set_theme(colors.brown1, colors.brown2));
-                break;
-            case 4:
-                dispatch(set_theme(colors.beach1, colors.beach2));
-                break;
-            case 5:
-                dispatch(set_theme(colors.red1, colors.red2));
-                break;
-            case 6:
-                dispatch(set_theme(colors.orange1, colors.orange2));
-                break;
-            case 7:
-                dispatch(set_theme(colors.pink1, colors.pink2));
-                break;
-            default:
-                break;
-        }
-
+    switch (id) {
+      case 0:
+        dispatch(set_theme(colors.base1, colors.base2));
+        break;
+      case 1:
+        dispatch(set_theme(colors.purple1, colors.purple2));
+        break;
+      case 2:
+        dispatch(set_theme(colors.sun1, colors.sun2));
+        break;
+      case 3:
+        dispatch(set_theme(colors.brown1, colors.brown2));
+        break;
+      case 4:
+        dispatch(set_theme(colors.beach1, colors.beach2));
+        break;
+      case 5:
+        dispatch(set_theme(colors.red1, colors.red2));
+        break;
+      case 6:
+        dispatch(set_theme(colors.orange1, colors.orange2));
+        break;
+      case 7:
+        dispatch(set_theme(colors.pink1, colors.pink2));
+        break;
+      default:
+        break;
     }
+  };
 
-    return (
+  return (
         <View style={styles.drawerContainer}>
 
             <TouchableOpacity onPress={() => {navigation.navigate('Calculator')}}>

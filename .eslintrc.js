@@ -1,8 +1,12 @@
 module.exports = {
   root: true,
   extends: '@react-native-community',
-  {
-    "plugins": ["disable"],
-    "processor": "disable/disable"
-  }
+  rules: {
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
+  },
 };
