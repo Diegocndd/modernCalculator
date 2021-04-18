@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
+import store from '../../store';
 
 const heightScreen = Dimensions.get('window').height;
 const widthScreen = Dimensions.get('window').width;
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
         alignItems: 'center' ,
     },
     keyboardText: {
-        color: '#a044ff',
+//        color: '#a044ff',
         fontSize: 30
     },
     textRow1: {
